@@ -1,0 +1,23 @@
+public class PeakIndex {
+    public static void main(String[] args) {
+        int[]array = {1,2,7,11,5};
+        System.out.println(peakIndex(array));
+    }
+
+    public static int peakIndex(int[]array){
+        int start =0;
+        int end = array.length-1;
+
+        while(start<end){
+            int mid = start+(end-start)/2;
+            if(array[mid]>array[mid+1]){
+                end=mid;//for the decreasing part of array.
+            }
+            else{
+                start = mid+1;//for the increasing part of array.
+            }
+
+        }
+        return array[start];
+    }
+}
