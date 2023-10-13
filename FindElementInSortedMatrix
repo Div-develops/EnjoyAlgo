@@ -1,0 +1,43 @@
+public class FindElementSortedMatrix {
+    public static void main(String[] args) {
+        int[][]matrix={{1,2,6},{12,13,16},{23,35,36}};
+        System.out.println(findMinRow(matrix,3,3,13));
+    }
+
+
+    public static boolean findMinRow(int[][] matrix,int m,int n,int target){
+        int start=0;
+        int end=m-1;
+        while(start<=end){
+            int mid = start+(end-start)/2;
+            if(matrix[mid][0]<=target && matrix[mid][n-1]>=target){
+                return findMinElement(matrix[mid],n,target);
+            }
+            else if(matrix[mid][0]>target){
+                end = mid-1;
+            }
+            else{
+                start = mid+1;
+            }
+        }
+        return false;
+    }
+
+    public static boolean findMinElement(int[]array,int n,int target){
+        int start=0;
+        int end=n-1;
+        while(start<=end){
+            int mid = start+(end-start)/2;
+            if(array[mid]==target){
+                return true;
+            }
+            if(array[mid]>target){
+                end = mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return false;
+    }
+}
