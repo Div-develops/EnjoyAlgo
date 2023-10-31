@@ -1,0 +1,29 @@
+import java.util.HashMap;
+
+public class isAnagram {
+    public static void main(String[]args){
+        System.out.println(isAnagramDif("listen","silent")); //sample input
+    }
+
+    public static boolean isAnagramDif(String str1,String str2){
+        HashMap<Character,Integer> str1Map = new HashMap<>();  //stores count of characters present in string1
+        HashMap<Character,Integer> str2Map = new HashMap<>();  //stores count of characters present in string2
+
+        for(char ch:str1.toCharArray()){
+            str1Map.put(ch,str1Map.getOrDefault(ch,0)+1);
+        }
+        for(char ch:str2.toCharArray()){
+            str2Map.put(ch,str2Map.getOrDefault(ch,0)+1);
+        }
+        int count = 0;
+
+        for(char ch:str1.toCharArray()){
+            if(str2Map.containsKey(ch)){
+                if(!(str1Map.get(ch).equals(str2Map.get(ch)))){ // After checking whether the character present in str1Map is also present in str2,we check whether the count of characters in string 1 and string 2 are same
+                    count++;
+                }
+            }
+        }
+        return !(count>0);
+    }
+}
