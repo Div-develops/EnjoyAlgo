@@ -10,18 +10,17 @@ public class BinarySearchInfinite {
         }
     }
 
-    public static int findTarget(int[] arr, int target) {
-        int start = 0;
-        int end = 1;
-
-        // Find a suitable end index that covers the target
-        while (arr[end] < target) {
-            start = end;
-            end *= 2;
-        }
-
-        return binarySearch(arr, target, start, end);
+  public static int findTarget(int[] arr, int target) {
+    int start = 0;
+    int end = 1;
+    while (end < arr.length && arr[end] < target) {
+        start = end;
+        end *= 2;
     }
+    return binarySearch(arr, target, start, Math.min(end, arr.length - 1));
+}
+//You are using a finite array and multiplying the end with 2.
+//So at some point in time, it can go beyond the length of the array. To fix this, you should ensure that the end doesn't go out of bounds.
 
     public static int binarySearch(int[] arr, int target, int start, int end) {
         while (start <= end) {
