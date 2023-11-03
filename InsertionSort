@@ -1,0 +1,21 @@
+import java.util.Arrays;
+
+public class InsertionSort {
+    public static void main(String[] args) {
+        int[]array = {3,1,5,2};
+        insertionSort(array,array.length);
+        System.out.println(Arrays.toString(array));
+    }
+
+    public static void insertionSort(int[]arr,int n){
+        for(int i=1;i<n;i++){  //as 1st element is already sorted. As only one element is inserted/there.
+            int j=i-1;  //initialising here as we have to access "j" inside outer loop
+            int key = arr[i];  //so that later we can swap key with j+1.As in the following operations key value get changed by inner loop iteration.
+            while(j>=0 && arr[j]>key) {  //1st we need to check j>=0 as j-- can return -1 in some cases which will lead to ArrayIndexOutOfBoundException. Cannot use for loop here as we don't know the number of iterations we will have with condition arr[j]>key.
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j+1] = key;
+        }
+    }
+}
