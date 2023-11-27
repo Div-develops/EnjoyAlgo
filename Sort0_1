@@ -1,0 +1,27 @@
+import java.util.Arrays;
+
+public class Sort0_1 {
+    public static void main(String[] args) {
+        int[]arr={0,1,0,0,1,0,1};
+        int n=arr.length;
+        sort0_1(arr,n);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void sort0_1(int[]arr,int n){
+        int i=-1;
+        for(int j=0;j<n;j++){
+            if(arr[j]==1){
+                swapElements(arr,i+1,j);
+                i++;
+            }
+
+        }
+    }
+
+    public static void swapElements(int[] array,int index1,int index2){
+        int temp = array[index1];
+        array[index1]= array[index2];
+        array[index2] = temp;
+    }
+}
