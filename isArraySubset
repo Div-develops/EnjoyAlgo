@@ -1,0 +1,53 @@
+public class SubsetArray {
+    public static void main(String[] args) {
+        int[]arr1={2,3,5,6,1,8};
+        int[]arr2= {2,3};
+        int m=arr1.length;
+        int n=arr2.length;
+        System.out.println("It is " + binarySearchApproach(arr1,arr2,m,n) + " that second array is subset of first array");
+    }
+
+    //arr2 is subset array
+
+    public static boolean subsetArrayBruteForceLinearApproach(int[]arr1,int m,int[]arr2,int n){
+        for(int i=0;i<n;i++){
+            boolean isElementPresent=false;
+            for(int j=0;j<m;j++){
+                if(arr1[j] == arr2[i]){
+                    isElementPresent=true;
+                    break;
+                }
+            }
+            if(!isElementPresent){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean binarySearchApproach(int[]arr1,int[]arr2,int m,int n){
+        for(int i=0;i<n;i++){
+            if(!findElement(arr1,arr2[i],0,m)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean findElement(int[]arr,int target,int start,int end){
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(arr[mid]==target){
+                return true;
+            }
+            else if(arr[mid]<target){
+                start=mid+1;
+            }
+            else{
+                end=mid-1;
+            }
+        }
+        return false;
+    }
+
+}
