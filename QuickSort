@@ -1,0 +1,69 @@
+import java.util.Arrays;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int[]arr={6,9,3,1};
+        quickSort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void quickSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int pivotIndex = partition2(arr, l, r);
+            quickSort(arr, l, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, r);
+        }
+    }
+
+    //two pointers moving in same direction
+    public static int partition1(int[]arr,int left,int right){
+        int i=left-1;
+        int pivot = arr[right];
+        for(int j=left;j<right;j++){
+            if(arr[j]<pivot){
+                i++;
+                swapElements(arr,i,j);
+            }
+        }
+        swapElements(arr,i+1,right);
+        return i+1;
+    }
+
+    //two pointers moving in same direction
+
+    public static int partition2(int[] arr, int l, int r) {
+        int pivotItem = arr[r];
+        int left = l;
+        int right = r-1;
+
+        while (left < right) {
+            /* Move left while item < pivot */
+            while (left < right && arr[left] < pivotItem) {
+                left++;
+            }
+
+            /* Move right while item > pivot */
+            while (left < right && arr[right] > pivotItem) {
+                right--;
+            }
+            if (left < right) {
+                swapElements(arr, left, right);
+                left++;
+                right--;
+            }
+
+        }
+
+        swapElements(arr, left, r);
+        return left;
+    }
+
+
+
+
+    public static void swapElements(int[] array,int index1,int index2){
+        int temp = array[index1];
+        array[index1]= array[index2];
+        array[index2] = temp;
+    }
+}
