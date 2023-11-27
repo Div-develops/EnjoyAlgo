@@ -1,0 +1,20 @@
+public class BuildingFacingSun {
+    public static void main(String[] args) {
+        int[]arr={2,3,4,5};
+        int n=arr.length;
+        System.out.println(buildingFacingSun(arr,n));
+    }
+
+    public static int buildingFacingSun(int[]arr,int n){
+        int max=arr[0];
+        int count=1;
+        for(int i=1;i<n;i++){
+            if(arr[i]>max){
+                max = i;
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
