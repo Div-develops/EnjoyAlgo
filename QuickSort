@@ -16,7 +16,8 @@ public class QuickSort {
     }
 
     //two pointers moving in same direction
-    public static int partition1(int[]arr,int left,int right){
+
+  public static int partition1(int[]arr,int left,int right){
         int i=left-1;
         int pivot = arr[right];
         for(int j=left;j<right;j++){
@@ -31,35 +32,29 @@ public class QuickSort {
 
     //two pointers moving in same direction
 
-    public static int partition2(int[] arr, int l, int r) {
+   public static int partition2(int[] arr, int l, int r) {
         int pivotItem = arr[r];
         int left = l;
-        int right = r-1;
+        int right = r;
 
         while (left < right) {
             /* Move left while item < pivot */
             while (left < right && arr[left] < pivotItem) {
                 left++;
             }
-
             /* Move right while item > pivot */
-            while (left < right && arr[right] > pivotItem) {
+            while (left < right && arr[right] >= pivotItem) {
                 right--;
             }
             if (left < right) {
-                swapElements(arr, left, right);
-                left++;
-                right--;
+                swapElements(arr, left, right);//swapping when we find value larger than pivot in left subarray and smaller value than pivot in right subarray
             }
 
         }
 
-        swapElements(arr, left, r);
+        swapElements(arr, left, r);//swapping with pivot
         return left;
     }
-
-
-
 
     public static void swapElements(int[] array,int index1,int index2){
         int temp = array[index1];
